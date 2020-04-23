@@ -664,6 +664,9 @@ class PackageInstaller(object):
                 self._push_task(comp_pkg, is_compiler, 0, 0, STATUS_ADDED)
 
     def _set_terminal_title(self, text, force=False):
+        if not spack.config.get('config:set_terminal_title', True):
+            return
+
         if not sys.stdout.isatty() and not force:
             return
 
